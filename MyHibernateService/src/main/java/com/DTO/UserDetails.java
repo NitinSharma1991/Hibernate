@@ -1,5 +1,7 @@
 package com.DTO;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -14,6 +16,7 @@ public class UserDetails {
     private String userName;
     @Column(name = "Date")
     @Temporal(TemporalType.DATE)
+    @JsonIgnore
     private Date userDate;
     @Column(name = "User_Description")
     private String description;
