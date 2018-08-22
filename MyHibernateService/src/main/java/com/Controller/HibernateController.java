@@ -2,6 +2,7 @@ package com.Controller;
 
 import com.DTO.UserDetails;
 import com.DTO.Vechile;
+import com.Exception.ResourceNotFoundException;
 import com.Service.HibernateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,7 +26,7 @@ public class HibernateController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/user/{userID}/vechile")
-    public String addUserDetails(@RequestBody Vechile vechile, @PathVariable int userID) {
+    public void addUserDetails(@RequestBody Vechile vechile, @PathVariable int userID) throws ResourceNotFoundException {
         String str;
 
         UserDetails userDetails = hibernateService.findById(userID);
@@ -36,8 +37,9 @@ public class HibernateController {
         } else {
             str = "Couldn't find the id in User Table";
 
+                 throw new ResourceNotFoundException(str);
         }
-        return str;
+   //     return str;
     }
         @RequestMapping(method = RequestMethod.GET, value = "/user")
     public ResponseEntity<List> getUserDetails(){

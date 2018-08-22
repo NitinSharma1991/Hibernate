@@ -20,6 +20,7 @@ public class UserDetails {
     private Date userDate;
     @Column(name = "User_Description")
     private String description;
+    @JsonIgnore
     @OneToOne(mappedBy = "userDetails",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private Vechile vechile;
  /*   @ManyToMany(mappedBy = "userDetails", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
